@@ -389,17 +389,24 @@ static NSString *const cellReuseIdentifier = @"PGPickerColumnCell";
     return self.textColorOfOtherRow;
 }
 
+
+
 - (void)safeReloadData {
-    [self.centerTableView reloadData];
     [self.upTableView reloadData];
+    [self.centerTableView reloadData];
     [self.downTableView reloadData];
     
     NSInteger index =  [self setupSelectedRow];
+    NSInteger dataCount = self.datas.count;
     NSAttributedString *attriString = [[NSAttributedString alloc]initWithString:@""];
-    if (self.datas.count > index) {
+    if (index < dataCount) {
         attriString = self.datas[index];
         self.textOfSelectedRow = attriString.string;
+    } else {
+        _selectedRow = dataCount - 1;
+        self.textOfSelectedRow = ((NSAttributedString *)self.datas.lastObject).string;
     }
+}
 }
 
 
