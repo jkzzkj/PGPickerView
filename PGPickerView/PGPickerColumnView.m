@@ -407,7 +407,6 @@ static NSString *const cellReuseIdentifier = @"PGPickerColumnCell";
         self.textOfSelectedRow = ((NSAttributedString *)self.datas.lastObject).string;
     }
 }
-}
 
 
 @end
